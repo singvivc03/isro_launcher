@@ -19,17 +19,17 @@ func New(name string) Launcher {
 	return &launcher{name: name}
 }
 
-func (l *launcher) Launch(count int, groupof int) <-chan int {
+func (l *launcher) Launch(sequence int, groupof int) <-chan int {
 	signal := make(chan int)
 	go func() {
 		fmt.Printf("Launching satellites from launch pad %s\n", l.name)
-		for sat := count; sat < count+groupof; sat++ {
+		for sat := sequence; sat < sequence+groupof; sat++ {
 			fmt.Printf("Launching SAT%d ", sat)
 			counter.Count()
 			fmt.Printf("SAT%d launched successfully\n", sat)
 		}
 		fmt.Println()
-		signal <- count + groupof
+		signal <- sequence + groupof
 	}()
 	return signal
 }

@@ -22,7 +22,7 @@ func New(name string) Launcher {
 func (l *launcher) Launch(count int, groupof int) <-chan int {
 	signal := make(chan int)
 	go func() {
-		fmt.Printf("Launching satellites from launch pad %s in...\n", l.name)
+		fmt.Printf("Launching satellites from launch pad %s\n", l.name)
 		for sat := count; sat < count+groupof; sat++ {
 			fmt.Printf("Launching SAT%d ", sat)
 			counter.Count()
